@@ -11,6 +11,7 @@ import { fileURLToPath } from "url";
 import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import { verifyToken } from "./middleware/auth.js";
+import userRoutes from "./router/users.js"
 
 // конфигурација:
 
@@ -42,6 +43,7 @@ app.post("auth/register", upload.single("picture"), register, verifyToken);
 
 //routes
 app.use("auth", authRoutes);
+app.use("/users", userRoutes);
 
 //mongoose
 
