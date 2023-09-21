@@ -12,6 +12,8 @@ import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import { verifyToken } from "./middleware/auth.js";
 import userRoutes from "./router/users.js"
+import postRoutes from "./routes/posts.js"
+import { createPost} from "./controllers/posts.js"
 
 // конфигурација:
 
@@ -40,10 +42,12 @@ const upload = multer({ storage });
 
 //routes files
 app.post("auth/register", upload.single("picture"), register, verifyToken);
+app.post(".posts", verifyToken,upload.single("picture"), createPost)
 
 //routes
 app.use("auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/posts", postRoutes)
 
 //mongoose
 
