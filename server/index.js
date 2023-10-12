@@ -35,17 +35,17 @@ const storage = multer.diskStorage({
     cb(null, "public/assets");
   },
   filename: function (req, file, cb) {
-    cd(null, file.originalname);
+    cb(null, file.originalname);
   },
 });
 const upload = multer({ storage });
 
 //routes files
-app.post("auth/register", upload.single("picture"), register, verifyToken);
-app.post(".posts", verifyToken,upload.single("picture"), createPost)
+app.post("/auth/register", upload.single("picture"), register, );
+app.post("/posts", verifyToken,upload.single("picture"), createPost)
 
 //routes
-app.use("auth", authRoutes);
+app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes)
 

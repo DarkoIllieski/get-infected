@@ -1,7 +1,7 @@
-import { Box, useTheme  } from "@mui/system";
-import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import { Form } from "./Form";
+import { Box, useTheme } from "@mui/system";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Form from "./Form";
 function LoginPage() {
   const theme = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
@@ -27,6 +27,7 @@ function LoginPage() {
         <Typography fontWeight="500" varian="h5" sx={{ mb: "1.5rem" }}>
           We are .getInfected please wellcome on the board!
         </Typography>
+        <Form />
       </Box>
     </Box>
   );

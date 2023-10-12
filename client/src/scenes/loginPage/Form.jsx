@@ -57,7 +57,7 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http//localhost:3001/auth/register",
+      "http://localhost:3001/auth/register",
       {
         method: "POST",
         body: formData,
@@ -72,7 +72,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http//localhost:3001/auth/login", {
+    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -96,7 +96,7 @@ const Form = () => {
   };
   return (
     <Formik
-      onSubmint={handleFormSubmit}
+      onSubmit={handleFormSubmit}
       initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema={isLogin ? loginSchema : registerSchema}
     >
@@ -116,7 +116,7 @@ const Form = () => {
             gap="30px"
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
             sx={{
-              "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+              "& > div": { gridColumn: isNonMobile ? "span 4" : undefined   },
             }}
           >
             {isRegister && (
@@ -158,7 +158,7 @@ const Form = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   value={values.occupation}
-                  name="ocupation"
+                  name="occupation"
                   error={
                     Boolean(touched.occupation) && Boolean(errors.occupation)
                   }
@@ -205,7 +205,7 @@ const Form = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.email}
-              name="ocupation"
+              name="email"
               error={Boolean(touched.email) && Boolean(errors.email)}
               helperText={touched.email && errors.email}
               sx={{ gridColumn: "span 4" }}
@@ -216,7 +216,7 @@ const Form = () => {
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.password}
-              name="ocupation"
+              name="password"
               error={Boolean(touched.password) && Boolean(errors.password)}
               helperText={touched.password && errors.password}
               sx={{ gridColumn: "span 4" }}
@@ -252,7 +252,7 @@ const Form = () => {
             >
               {isLogin
                 ? "Still don't have an acount? Sign Up here"
-                : "Already have an acount? : Login here!"}
+                : "Already have an acount?  Login here!"}
             </Typography>
           </Box>
         </form>
