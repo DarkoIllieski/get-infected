@@ -24,7 +24,7 @@ function HomePage() {
           flexBasis={isNonMobileScreens ? "42%" : "2rem"}
           mt={isNonMobileScreens ? undefined : "2rem"}
         ></Box>
-        {isNonMobileScreen && <Box flexBasis="26%"></Box>}
+        {isNonMobileScreens && <Box flexBasis="26%"></Box>}
       </Box>
     </Box>
   );
