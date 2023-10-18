@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 import { useTheme } from "@emotion/react";
-import { InputBase, useMediaQuery } from "@mui/material";
+import { Divider, InputBase, useMediaQuery } from "@mui/material";
 import { Box, borderRadius } from "@mui/system";
 
 const MyPostWidget = ({ picturePath }) => {
@@ -98,6 +98,14 @@ const MyPostWidget = ({ picturePath }) => {
                     </FlexBetween>
                   )}
                 </Box>
+                {image && (
+                  <IconButton
+                    onClick={() => setImage(null)}
+                    sx={{ width: "15%" }}
+                  >
+                    <DeleteOutlined />
+                  </IconButton>
+                )}
               </FlexBetween>
             )}
           </Dropzone>
