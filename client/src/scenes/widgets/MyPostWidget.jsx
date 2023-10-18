@@ -5,7 +5,6 @@ import {
   MicOutlined,
   ImageOutlined,
   MoreHorizOutlined,
-  FourGMobiledataRounded,
   AttachFileOutlined,
 } from "@mui/icons-material";
 import WidgetWrapper from "components/WidgetWrapper";
@@ -16,8 +15,15 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 import { useTheme } from "@emotion/react";
-import { Divider, InputBase, Typography, useMediaQuery } from "@mui/material";
-import { Box, borderRadius } from "@mui/system";
+import {
+  Button,
+  Divider,
+  InputBase,
+  Typography,
+  useMediaQuery,
+  IconButton,
+} from "@mui/material";
+import { Box } from "@mui/system";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -141,13 +147,21 @@ const MyPostWidget = ({ picturePath }) => {
               <Typography color={mediumMain}>Attachment</Typography>
             </FlexBetween>
           </>
-        ) : ( 
+        ) : (
           <FlexBetween gap="0.25rem">
-            <MoreHorizOutlined sx={{  color: mediumMain }}/>
-            </FlexBetween >
+            <MoreHorizOutlined sx={{ color: mediumMain }} />
+          </FlexBetween>
         )}
 
-        
+        <Button
+          disabled={!post}
+          onClick={handlePost}
+          sx={{
+            color: palette.background.alt,
+            backgroundColor: palette.primary.main,
+            borderRadius: "3rem",
+          }}
+        >POST</Button>
       </FlexBetween>
     </WidgetWrapper>
   );
