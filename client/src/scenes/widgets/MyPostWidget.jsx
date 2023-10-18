@@ -2,11 +2,11 @@ import {
   DeleteOutlined,
   EditOutlined,
   GifBoxOutlined,
-  AttachFilesOutlined,
   MicOutlined,
   ImageOutlined,
   MoreHorizOutlined,
   FourGMobiledataRounded,
+  AttachFileOutlined,
 } from "@mui/icons-material";
 import WidgetWrapper from "components/WidgetWrapper";
 import UserImage from "components/UserImage";
@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 import { useTheme } from "@emotion/react";
-import { Divider, InputBase, useMediaQuery } from "@mui/material";
+import { Divider, InputBase, Typography, useMediaQuery } from "@mui/material";
 import { Box, borderRadius } from "@mui/system";
 
 const MyPostWidget = ({ picturePath }) => {
@@ -111,6 +111,44 @@ const MyPostWidget = ({ picturePath }) => {
           </Dropzone>
         </Box>
       )}
+      <Divider sx={{ margin: "1.25rem 0" }} />
+
+      <FlexBetween>
+        <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
+          <ImageOutlined sx={{ color: mediumMain }} />
+          <Typography
+            color={mediumMain}
+            sx={{ "&:hover": { cursor: "pointer", color: medium } }}
+          >
+            Your Image
+          </Typography>
+        </FlexBetween>
+
+        {isNonMobileScreens ? (
+          <>
+            <FlexBetween gap="0.25rem">
+              <GifBoxOutlined sx={{ color: mediumMain }} />
+              <Typography color={mediumMain}>Clip</Typography>
+            </FlexBetween>
+
+            <FlexBetween gap="0.25rem">
+              <MicOutlined sx={{ color: mediumMain }} />
+              <Typography color={mediumMain}>Sound</Typography>
+            </FlexBetween>
+
+            <FlexBetween gap="0.25rem">
+              <AttachFileOutlined sx={{ color: mediumMain }} />
+              <Typography color={mediumMain}>Attachment</Typography>
+            </FlexBetween>
+          </>
+        ) : ( 
+          <FlexBetween gap="0.25rem">
+            <MoreHorizOutlined sx={{  color: mediumMain }}/>
+            </FlexBetween >
+        )}
+
+        
+      </FlexBetween>
     </WidgetWrapper>
   );
 };
