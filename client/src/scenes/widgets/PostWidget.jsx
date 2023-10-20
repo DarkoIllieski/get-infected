@@ -2,7 +2,10 @@ import { useState } from "react";
 import Friend from "components/Friend";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
-import { SettingsApplications } from "@mui/icons-material";
+import { FavoriteOutlined, SettingsApplications } from "@mui/icons-material";
+import WidgetWrapper from "components/WidgetWrapper";
+import { Typography } from "@mui/material";
+import FlexBetween from "components/FlexBetween";
 
 const PostWidget = ({
   postId,
@@ -36,8 +39,45 @@ const PostWidget = ({
       body: JSON.stringify({ userId: loggedInUser }),
     });
     const updatePost = await response.json();
-    dispatch(setPost({ post: updatePost }));
+    dispatch(setPost({ post: updatedPost }));
   };
+
+  return (
+    <WidgetWrapper m="2rem 0">
+      <Friend
+        friendId={postUserId}
+        name={name}
+        subtitle={location}
+        userPicturePath={userPicturePath}
+      />
+      <Typography color={main} sx={{ mt: "1rem" }}>
+        {description}
+      </Typography>
+      {picturePath && (
+        <img
+          width="100%"
+          height="auto"
+          alt="post"
+          style={{ borderRadius: "0.75rem", margintTop: "0.75rem" }}
+          src={`http://localhost:3001/assest/${picturePath}`}
+        />
+      )}
+      <FlexBetween mt="025rem">
+        <FlexBetween gap="1rem">
+          <FlexBetween gap="0.3rem">
+            <IconButton onClick={patchLike}>
+              {isLiked ? (
+                <FavoriteOutlined sx={{ color: primary }} />
+              ) : (
+                <FavoriteBorderOutlined />
+              )}
+            </IconButton>
+            <Typography>{likeCount}</Typography>
+          </FlexBetween>
+        </FlexBetween>
+      </FlexBetween>
+    </WidgetWrapper>
+  );
 };
 
 export default PostWidget;
