@@ -2,10 +2,16 @@ import { useState } from "react";
 import Friend from "components/Friend";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
-import { FavoriteOutlined, SettingsApplications } from "@mui/icons-material";
+import {
+  ChatBubbleOutlineOutlined,
+  FavoriteOutlined,
+  SettingsApplications,
+  ShareOutlined,
+} from "@mui/icons-material";
 import WidgetWrapper from "components/WidgetWrapper";
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
+import { Box } from "@mui/system";
 
 const PostWidget = ({
   postId,
@@ -74,8 +80,32 @@ const PostWidget = ({
             </IconButton>
             <Typography>{likeCount}</Typography>
           </FlexBetween>
+
+          <FlexBetween gap="0.3rem">
+            <IconButton onClick={() => setIsComments(!isComments)}>
+              <ChatBubbleOutlineOutlined />
+            </IconButton>
+            <Typography>{comments.lenght}</Typography>
+          </FlexBetween>
         </FlexBetween>
+
+        <IconButton>
+          <ShareOutlined />
+        </IconButton>
       </FlexBetween>
+      {isComments && (
+        <Box mt="0.5rem">
+          {comments.map((comment, i) => (
+            <Box key={`${name}-${i}`}>
+              <Divider />
+              <Typography sx={{ color: main, m: "0.5rem", pl: "`rem" }}>
+                {comment}
+              </Typography>
+            </Box>
+          ))}
+          <Divider />
+        </Box>
+      )}
     </WidgetWrapper>
   );
 };
