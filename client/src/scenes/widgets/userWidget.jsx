@@ -4,7 +4,8 @@ import {
   LocationOnOutlined,
   WorkOutlineOutlined,
 } from "@mui/icons-material";
-import { Box, useTheme } from "@mui/system";
+import { Box } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import UserImage from "components/UserImage";
@@ -33,7 +34,7 @@ const UserWidget = ({ userId, picturePath }) => {
   };
   useEffect(() => {
     getUser();
-  }, );
+  });
 
   if (!user) {
     return null;

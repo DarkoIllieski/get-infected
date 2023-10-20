@@ -1,16 +1,19 @@
 import { useState } from "react";
-import Friend from "components/Friend";
+import Friend from "components/Friend.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import {
   ChatBubbleOutlineOutlined,
   FavoriteOutlined,
-  SettingsApplications,
+  FavoriteBorderOutlined,
   ShareOutlined,
 } from "@mui/icons-material";
 import WidgetWrapper from "components/WidgetWrapper";
-import { IconButton, Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import { useTheme } from "@mui/material/styles";
 import FlexBetween from "components/FlexBetween";
+import Divider from "@mui/material/Divider";
 import { Box } from "@mui/system";
 
 const PostWidget = ({
@@ -28,7 +31,7 @@ const PostWidget = ({
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const loggedInUserId = useSelector((state) => state.user._id);
-  const isLiked = Boolean(likes[loggedInUser]);
+  const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
   const { palette } = useTheme();
@@ -39,13 +42,13 @@ const PostWidget = ({
     const response = await fetch(`http://localhost:3001/posts/${likes}/like`, {
       method: "PATCH",
       headers: {
-        Authorization: `Barear ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-type": "applications/json",
       },
-      body: JSON.stringify({ userId: loggedInUser }),
+      body: JSON.stringify({ userId: loggedInUserId }),
     });
     const updatePost = await response.json();
-    dispatch(setPost({ post: updatedPost }));
+    dispatch(setPost({ post: updatePost }));
   };
 
   return (
@@ -64,14 +67,14 @@ const PostWidget = ({
           width="100%"
           height="auto"
           alt="post"
-          style={{ borderRadius: "0.75rem", margintTop: "0.75rem" }}
+          style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
           src={`http://localhost:3001/assest/${picturePath}`}
         />
       )}
       <FlexBetween mt="025rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={patchLike}>
+            <IconButton onClick={patchLikes}>
               {isLiked ? (
                 <FavoriteOutlined sx={{ color: primary }} />
               ) : (
@@ -85,7 +88,7 @@ const PostWidget = ({
             <IconButton onClick={() => setIsComments(!isComments)}>
               <ChatBubbleOutlineOutlined />
             </IconButton>
-            <Typography>{comments.lenght}</Typography>
+            <Typography>{comments.length}</Typography>
           </FlexBetween>
         </FlexBetween>
 
@@ -98,7 +101,7 @@ const PostWidget = ({
           {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
-              <Typography sx={{ color: main, m: "0.5rem", pl: "`rem" }}>
+              <Typography sx={{ color: main, m: "0.5rem", pl: "rem" }}>
                 {comment}
               </Typography>
             </Box>
