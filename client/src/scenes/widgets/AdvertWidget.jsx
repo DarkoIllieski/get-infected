@@ -1,9 +1,9 @@
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import WidgetWrapper from "./WidgetWrapper";
-import FlexBetween from "./FlexBetween";
+import WidgetWrapper from "../../components/WidgetWrapper";
+import FlexBetween from "../../components/FlexBetween";
 
-const advertWidget = () => {
+const AdvertWidget = () => {
   const { palette } = useTheme();
   const dark = palette.neutral.dark;
   const main = palette.neutral.main;
@@ -34,3 +34,4 @@ const advertWidget = () => {
     </WidgetWrapper>
   );
 };
+export default AdvertWidget;
