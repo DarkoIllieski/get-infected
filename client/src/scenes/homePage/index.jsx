@@ -6,6 +6,7 @@ import UserWidget from "scenes/widgets/userWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostWidget from "scenes/widgets/PostWidget";
 import AdvertWidget from "scenes/widgets/AdvertWidget";
+import FriendListWidget from "scenes/widgets/FriendListWidget";
 
 function HomePage() {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -34,6 +35,7 @@ function HomePage() {
           <Box flexBasis="26%">
             <AdvertWidget />
             <Box m="2rem" />
+            <FriendListWidget userId={_id} />
           </Box>
         )}
       </Box>
