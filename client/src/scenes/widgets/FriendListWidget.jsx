@@ -24,9 +24,9 @@ const FriendListWidget = ({ userId }) => {
   };
   useEffect(() => {
     getFriends();
-  }, []);
+  }, [getFriends]);
 
-  return;
+  return ( 
   <WidgetWrapper>
     <Typography
       color={palette.neutral.dark}
@@ -47,6 +47,7 @@ const FriendListWidget = ({ userId }) => {
         />
       ))}
     </Box>
-  </WidgetWrapper>;
+  </WidgetWrapper>
+  )
 };
 export default FriendListWidget;
