@@ -40,10 +40,9 @@ const MyPostWidget = ({ picturePath }) => {
   const handlePost = async () => {
     const formData = new FormData();
     formData.append("userId", _id);
-    formData.append("picturePath", image.name);
     if (image) {
-      formData.append("picture", image);
       formData.append("picturePath", image.name);
+      formData.append("picture", image);
     }
 
     const response = await fetch(`http://localhost:3001/posts`, {
